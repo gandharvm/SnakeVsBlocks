@@ -23,13 +23,5 @@
       </Text>
       <Label layoutX="535.0" layoutY="369.0" text="Loading..." textFill="WHITE" />
 
-       <!--<fx:define>-->
-           <!--<RotateTransition fx:id="loadingCircleAnimation" duration="2.5s" node="$loadingCircle" interpolator="LINEAR" byAngle="-360" >-->
-               <!--<cycleCount>-->
-                   <!--<Animation fx:constant="INDEFINITE"/>-->
-               <!--</cycleCount>-->
-           <!--</RotateTransition>-->
-       <!--</fx:define>-->
-
 
 </Pane>
