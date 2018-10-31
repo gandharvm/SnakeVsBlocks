@@ -1,6 +1,7 @@
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 
 public class MainMenu {
 	private SceneManager sceneManager;
@@ -14,25 +15,28 @@ public class MainMenu {
 
     public Scene start(){
         root=new Group();
-        menu=new Scene(root);
+        root.maxHeight(800.0);
+        root.maxWidth(600.0);
+        menu=new Scene(root,800,600, Color.BLACK);
         addButtons();
+        menu.getStylesheets().add("MainMenu.css");
         return menu;
     }
 
     public void addButtons(){
-        Button start=Generate.createButton("New Game",300.0,200.0,50,20);
-//        start.setOnAction(e ->{
-//            sceneManager.g
-//        });
-        Button leader=Generate.createButton("Leaderboard",300.0,300.0,50,20);
+        Button start=Generate.createButton("New Game",400.0,200.0,50,20);
+        start.setOnAction(e ->{
+            sceneManager.startGame();
+        });
+        Button leader=Generate.createButton("Leaderboard",400.0,250.0,50,20);
         leader.setOnAction(e ->{
             sceneManager.gotoLeaderBoard();
         });
-        Button instructions=Generate.createButton("Instructions",300.0,400.0,50,20);
+        Button instructions=Generate.createButton("Instructions",400.0,300.0,50,20);
         instructions.setOnAction(e ->{
             sceneManager.gotoInstructions();
         });
-        Button exit=Generate.createButton("Exit",300.0,500.0,50,20);
+        Button exit=Generate.createButton("Exit",400.0,350.0,50,20);
         exit.setOnAction(e ->{
             sceneManager.exit();
         });

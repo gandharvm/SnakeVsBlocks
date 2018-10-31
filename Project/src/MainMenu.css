@@ -1,8 +1,6 @@
-@import: url(https://fonts.googleapis.com/css?family=Roboto+Condensed);
+
 body {
-  font-family: 'Roboto Condensed', sans-serif;
-  height: 100%;
-  background-color: black;
+  -fx-background-color: black;
   color: #fff;
   text-transform: uppercase;
 }

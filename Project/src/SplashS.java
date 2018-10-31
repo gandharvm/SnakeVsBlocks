@@ -1,9 +1,6 @@
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,8 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.sql.Time;
-import java.util.concurrent.TimeUnit;
 
 
 public class SplashS extends Application {
@@ -41,23 +36,17 @@ public class SplashS extends Application {
         SceneManager sceneManager=new SceneManager(s);
         Task<Void> sleeper = new Task<Void>() {
             @Override
-            protected Void call() throws Exception {
+            protected Void call() {
                 try {
                     Thread.sleep((int)(Math.random()*2000)+2000);
-                } catch (InterruptedException e) {
-                }
+                } catch (InterruptedException e) {}
                 return null;
             }
         };
-        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
+        sleeper.setOnSucceeded(e->{
                 rt.stop();
                 sceneManager.showMainMenu();
-            }
         });
-
-
 
         s.setScene(new Scene(root));
         s.show();

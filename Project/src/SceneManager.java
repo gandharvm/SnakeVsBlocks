@@ -23,13 +23,13 @@ public class SceneManager {
         stage.setScene(scene);
 
     }
-//
-//    public void startGame() throws Exception{
-//        AnchorPane root=FXMLLoader.load(getClass().getResource());
-//        Scene scene=new Scene(root);
-//
-//        stage.setScene(scene);
-//    }
+
+    public void startGame(){
+
+        Scene scene=new Game(this).start();
+
+        stage.setScene(scene);
+    }
 //
 //    public void Pause() throws Exception{
 //        AnchorPane root=FXMLLoader.load(getClass().getResource());
