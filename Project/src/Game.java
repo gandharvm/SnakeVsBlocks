@@ -28,15 +28,15 @@ public class Game {
     }
 
     private void addButtons(){
-        Button back=Generate.createButton("Back",300.0,400.0,50,20);
-        back.setOnAction(e ->{
-            sceneManager.showMainMenu();
-        });
+//        Button back=Generate.createButton("Back",300.0,400.0,50,20);
+//        back.setOnAction(e ->{
+//            sceneManager.showMainMenu();
+//        });
 
         Circle head = new Circle(300,580,10,Color.RED);
 
         moveCircleOnKeyPress(head);
-        root.getChildren().addAll(back,head);
+        root.getChildren().addAll(head);
     }
 
     private TranslateTransition createTranslateTransition(Circle circle) {
