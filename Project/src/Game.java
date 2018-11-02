@@ -7,7 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -42,9 +45,25 @@ public class Game {
     private void addButtons(){
         HBox top=new HBox();
         Button back=Generate.createButton("Pause",300.0,10.0,50,20);
+
+//        back.setStyle("-fx-background-image: url('src\\Pause.png')");
+
         back.setOnAction(e ->{
             sceneManager.Pause();
         });
+
+        Region x=new Region();
+        Region y=new Region();
+
+        HBox.setHgrow(x, Priority.ALWAYS);
+        HBox.setHgrow(y,Priority.ALWAYS);
+
+        top.setPrefWidth(600);
+
+        x.setPrefWidth(200);
+        x.setPrefHeight(200);
+        y.setPrefWidth(200);
+        y.setPrefHeight(200);
 
         Label t=new Label("Score: 0");
         t.setTextFill(Color.WHITE);
@@ -53,8 +72,8 @@ public class Game {
             FileInputStream inputStream=new FileInputStream ("src\\coin.png");
             Image image=new Image(inputStream,20,20,true,true);
             ImageView i=new ImageView(image);
-            top.getChildren().addAll(t,i,back);
-            top.setAlignment(Pos.TOP_CENTER);
+            top.getChildren().addAll(t,x,i,y,back);
+
         }
 
         catch (FileNotFoundException e){
@@ -65,7 +84,7 @@ public class Game {
 
 
 
-        top.spacingProperty().setValue(200);
+        //top.spacingProperty().setValue(200);
         root.getChildren().addAll(top);
     }
 
