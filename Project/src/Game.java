@@ -39,9 +39,52 @@ public class Game {
 
         addSnake();
         addButtons();
+        addIcons();
+        addPane();
+        
         return scene;
     }
+    
+    
+    private void addPane() {
+    	Panel P = new Panel(200);
+		ArrayList<StackPane> stkpane = P.getPane();
+		
+		root.getChildren().addAll(stkpane);
+    }
+    
+    
+    private void addIcons() {
+    	
+    	// Coin Image
+		FileInputStream coinStream = new FileInputStream ("src\\coin.png");
+        Image coinImage = new Image(coinStream,35,35,true,true);
+        ImageView coinView = new ImageView(coinImage);
+        
+        coinView.setLayoutX(50);
+        coinView.setLayoutY(300);
+        
+        // Magnet Image
+        FileInputStream magnetStream = new FileInputStream ("src\\magnet.png");
+        Image magnetImage = new Image(magnetStream,30,30,true,true);
+        ImageView magnetView = new ImageView(magnetImage);
+        
+        magnetView.setLayoutX(20);
+        magnetView.setLayoutY(33);
+        
+        // Shield Image
+        FileInputStream shieldStream = new FileInputStream ("src\\shield.png");
+        Image shieldImage = new Image(shieldStream,35,35,true,true);
+        ImageView shieldView = new ImageView(shieldImage);
+        
+        shieldView.setLayoutX(400);
+        shieldView.setLayoutY(330);
 
+        
+        root.getChildren().addAll(coinView, magnetView, shieldView);
+    }
+    
+    
     private void addButtons(){
         HBox top=new HBox();
         Button back=Generate.createButton("Pause",300.0,10.0,50,20);
@@ -80,39 +123,27 @@ public class Game {
             top.getChildren().addAll(t,back);
         }
 
-
-
-
-
         //top.spacingProperty().setValue(200);
         root.getChildren().addAll(top);
     }
-
+    
     private void addSnake(){
-        Circle head = new Circle(300,580,10,Color.RED);
-
-        moveCircleOnKeyPress(head);
-        root.getChildren().addAll(head);
+    	Snake S = new Snake(10);
+		VBox Snake = S.getSnake();
+		Snake.setLayoutX(300);
+		Snake.setLayoutY(400);
+		
+		root.getChildren().add(Snake);
+		
+		moveCircleOnKeyPress(scene,Snake);
     }
 
-//    private TranslateTransition createTranslateTransition(Circle circle) {
-//        final TranslateTransition transition = new TranslateTransition(TRANSLATE_DURATION, circle);
-//        transition.setOnFinished(e-> {
-//            circle.setCenterX(circle.getTranslateX() + circle.getCenterX());
-//            circle.setCenterY(circle.getTranslateY() + circle.getCenterY());
-//            circle.setTranslateX(0);
-//            circle.setTranslateY(0);
-//        });
-//        return transition;
-//    }
-
-    private void moveCircleOnKeyPress(Circle circle) {
+    // Move the snake
+    private void moveCircleOnKeyPress(VBox circle) {
         scene.setOnKeyPressed(event ->  {
             switch (event.getCode()) {
-                case UP:    circle.setCenterY(circle.getCenterY() - KEYBOARD_MOVEMENT_DELTA); break;
-                case RIGHT: circle.setCenterX(circle.getCenterX() + KEYBOARD_MOVEMENT_DELTA); break;
-                case DOWN:  circle.setCenterY(circle.getCenterY() + KEYBOARD_MOVEMENT_DELTA); break;
-                case LEFT:  circle.setCenterX(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
+              case RIGHT: circle.setLayoutX(circle.getLayoutX() + KEYBOARD_MOVEMENT_DELTA); break;
+	          case LEFT:  circle.setLayoutX(circle.getLayoutX() - KEYBOARD_MOVEMENT_DELTA); break;
             }
         });
     }
