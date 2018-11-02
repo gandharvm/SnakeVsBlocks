@@ -9,7 +9,7 @@ public class SceneManager {
 
     SceneManager(Stage s) {
         this.stage=s;
-
+        s.resizableProperty().setValue(Boolean.FALSE);
     }
 
 

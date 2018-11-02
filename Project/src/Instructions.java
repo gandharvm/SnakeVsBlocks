@@ -14,7 +14,7 @@ public class Instructions {
 
     public Scene start(){
         root=new Group();
-        scene=new Scene(root);
+        scene=new Scene(root,600,600);
         addButtons();
         return scene;
     }

@@ -1,4 +1,5 @@
 import javafx.animation.TranslateTransition;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -53,6 +54,7 @@ public class Game {
             Image image=new Image(inputStream,20,20,true,true);
             ImageView i=new ImageView(image);
             top.getChildren().addAll(t,i,back);
+            top.setAlignment(Pos.TOP_CENTER);
         }
 
         catch (FileNotFoundException e){

@@ -14,12 +14,12 @@
   -fx-border-radius: 50px;
   /*-fx-webkit-transition: all .15s ease-in-out;*/
   /*-fx-transition: all .15s ease-in-out;*/
-  -fx-border-color: #00d7c3;
+  -fx-border-color: #ff0000;
 }
 
 .button:hover {
   /*box-shadow: 0 0 10px 0 #00d7c3 inset, 0 0 20px 2px #00d7c3;*/
-  -fx-effect: dropshadow(three-pass-box, rgba(0,215,195,0.8), 10, 0, 0, 0);
+  -fx-effect: dropshadow(three-pass-box, rgba(200,20,20,0.8), 10, 0, 0, 0);
   /*border: 3px solid #00d7c3;*/
 }
 
