@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -14,22 +8,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-   
-         <Rectangle arcHeight="5.0" arcWidth="5.0" height="415.0" layoutX="-6.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" width="612.0" />
-         <ImageView fx:id="loadingCircle" fitHeight="102.0" fitWidth="157.0" layoutX="222.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@loading.jpg" />
-            </image>
-         </ImageView>
-         <Text fill="#f5d000" layoutX="218.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snake Vs Blocks" wrappingWidth="164.046875">
-            <font>
-               <Font size="41.0" />
-            </font>
-         </Text>
-         <Label layoutX="535.0" layoutY="369.0" text="Loading..." textFill="WHITE" />
-   </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="415.0" layoutX="-6.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" width="612.0" />
+      <ImageView fx:id="loadingCircle" fitHeight="102.0" fitWidth="157.0" layoutX="222.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@loading.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#f5d000" layoutX="218.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Snake Vs Blocks" wrappingWidth="164.046875">
+         <font>
+            <Font size="41.0" />
+         </font>
+      </Text>
+      <Label layoutX="535.0" layoutY="369.0" text="Loading..." textFill="WHITE" />
 
 
 </Pane>

@@ -1,37 +1,24 @@
 
-body {
-  -fx-background-color: black;
-  color: #fff;
-  text-transform: uppercase;
-}
-.container {
-  text-align: center;
-}
-h1 {
-  margin-left: 30px;
-  margin-bottom: 50px;
-}
 .button {
-  width: 170px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  text-align: center;
-  color: #000;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-left: 30px;
-  margin-bottom: 30px;
-  cursor: pointer;
-  display: inline-block;
-  background-color: transparent;
-  border: 3px solid #00d7c3;
-  border-radius: 50px;
-  -webkit-transition: all .15s ease-in-out;
-  transition: all .15s ease-in-out;
-  color: #00d7c3;
+  -fx-width: 170px;
+  -fx-padding: 20px;
+  -fx-text-align: center;
+  -fx-color: #000;
+  -fx-font-weight: 600;
+  -fx-margin: 20px;
+  /*-fx-cursor: pointer;*/
+  -fx-display: inline-block;
+  -fx-background-color: transparent;
+  -fx-border-width:3px;
+  /*border:3px solid #00d7c3;*/
+  -fx-border-radius: 50px;
+  /*-fx-webkit-transition: all .15s ease-in-out;*/
+  /*-fx-transition: all .15s ease-in-out;*/
+  -fx-border-color: #00d7c3;
 }
 
 .button:hover {
-  box-shadow: 0 0 10px 0 #00d7c3 inset, 0 0 20px 2px #00d7c3;
-  border: 3px solid #00d7c3;
+  /*box-shadow: 0 0 10px 0 #00d7c3 inset, 0 0 20px 2px #00d7c3;*/
+  -fx-effect: dropshadow(three-pass-box, rgba(0,215,195,0.8), 10, 0, 0, 0);
+  /*border: 3px solid #00d7c3;*/
 }

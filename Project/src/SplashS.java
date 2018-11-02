@@ -48,6 +48,8 @@ public class SplashS extends Application {
                 sceneManager.showMainMenu();
         });
 
+
+        s.setTitle("Snake Vs Blocks");
         s.setScene(new Scene(root));
         s.show();
 

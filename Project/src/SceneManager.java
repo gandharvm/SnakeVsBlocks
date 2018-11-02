@@ -1,9 +1,6 @@
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.util.concurrent.TimeUnit;
 
 
 public class SceneManager {
@@ -30,14 +27,13 @@ public class SceneManager {
 
         stage.setScene(scene);
     }
-//
-//    public void Pause() throws Exception{
-//        AnchorPane root=FXMLLoader.load(getClass().getResource());
-//        Scene scene=new Scene(root);
-//
-//        stage.setScene(scene);
-//    }
-//
+
+    public void Pause(){
+        Scene scene=new Pause(this).start();
+
+        stage.setScene(scene);
+    }
+
     public void gotoLeaderBoard(){
 
         Scene scene=new LeaderBoard(this).start();
