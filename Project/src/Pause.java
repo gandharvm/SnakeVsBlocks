@@ -43,8 +43,8 @@ public class Pause {
 
     private void addButtons(){
         try {
-            FileInputStream inputStream=new FileInputStream ("src\\Logom8.png");
-            Image image=new Image(inputStream,400,50,true,true);
+            FileInputStream inputStream=new FileInputStream ("src\\Paused.png");
+            Image image=new Image(inputStream,400,80,true,true);
             ImageView i=new ImageView(image);
             root.add(i,0,0);
             GridPane.setHalignment(i, HPos.CENTER);
