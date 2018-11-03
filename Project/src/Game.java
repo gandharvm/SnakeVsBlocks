@@ -76,7 +76,7 @@ public class Game {
             root.getChildren().addAll(coinView, magnetView, shieldView);
         }
     	catch (FileNotFoundException e){
-
+    			// This exception will never occur
         }
 
     }
