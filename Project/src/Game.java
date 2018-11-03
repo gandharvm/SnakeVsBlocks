@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -73,7 +72,15 @@ public class Game {
             shieldView.setLayoutY(330);
 
 
-            root.getChildren().addAll(coinView, magnetView, shieldView);
+            // DestroyBlocks Image
+            FileInputStream destroyStream = new FileInputStream ("src\\Destroy.png");
+            Image destroyImage = new Image(destroyStream,35,35,true,true);
+            ImageView destroyView = new ImageView(destroyImage);
+
+            destroyView.setLayoutX(400);
+            destroyView.setLayoutY(400);
+
+            root.getChildren().addAll(coinView, magnetView, shieldView,destroyView);
         }
     	catch (FileNotFoundException e){
     			// This exception will never occur

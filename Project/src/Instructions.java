@@ -1,7 +1,7 @@
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -9,7 +9,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -27,6 +29,9 @@ public class Instructions {
     public Scene start(){
         root=new GridPane();
         root.setBackground(Background.EMPTY);
+        root.setPadding(new Insets(10, 10, 10, 10));
+        root.setHgap(10);
+        root.setVgap(10);
         scene=new Scene(root,600,600, Color.BLACK);
         root.setAlignment(Pos.CENTER);
         addButtons();
@@ -77,7 +82,10 @@ public class Instructions {
         //Instruction Text above
         
         // To wrap the text around the screen
-        text.wrappingWidthProperty().bind(root.widthProperty());
+        //text.wrappingWidthProperty().bind(root.widthProperty());
+        text.setWrappingWidth(500);
+        text.setFont(Font.font(14));
+        text.setBoundsType(TextBoundsType.VISUAL);
 
         text.setFill(Color.WHITE);
         root.add(text,0,1);
