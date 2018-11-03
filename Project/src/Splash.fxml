@@ -15,7 +15,7 @@
          </image>
       </ImageView>
       <Label layoutX="535.0" layoutY="369.0" text="Loading..." textFill="WHITE" />
-   <ImageView fitHeight="161.0" fitWidth="289.0" layoutX="156.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="62.0" fitWidth="416.0" layoutX="93.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@Logom8.png" />
       </image>
