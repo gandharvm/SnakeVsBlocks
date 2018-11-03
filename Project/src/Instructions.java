@@ -74,11 +74,10 @@ public class Instructions {
         			"distance from the head of the snake.\n" + 
         			"The speed of your snake will increase as the length increases so watch out !!! \n" + 
         			"You lose when you are not able to pass any block !!! ");  
-        //add text here - OK added
+        //Instruction Text above
         
-        text.setTextOrigin(VPos.TOP);
-//        text.layoutXProperty().bind(scene.widthProperty().subtract(text.prefWidth(-1)).divide(2));
-//        text.layoutYProperty().bind(scene.heightProperty().subtract(text.prefHeight(-1)).divide(2));
+        // To wrap the text around the screen
+        text.wrappingWidthProperty().bind(root.widthProperty());
 
         text.setFill(Color.WHITE);
         root.add(text,0,1);
