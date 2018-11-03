@@ -19,7 +19,7 @@
 
 .button:hover {
   /*box-shadow: 0 0 10px 0 #00d7c3 inset, 0 0 20px 2px #00d7c3;*/
-  -fx-effect: dropshadow(three-pass-box, rgba(0,215,195,0.8), 10, 0, 0, 0);
+  -fx-effect: dropshadow(three-pass-box, rgba(20,215,195,1), 10, 0, 0, 0);
   /*border: 3px solid #00d7c3;*/
 }
 

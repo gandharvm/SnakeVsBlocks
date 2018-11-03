@@ -1,23 +1,15 @@
-import javafx.animation.TranslateTransition;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 
 public class Game {
@@ -26,7 +18,6 @@ public class Game {
     private Scene scene;
 
     private static final int KEYBOARD_MOVEMENT_DELTA = 5;
-    private static final Duration TRANSLATE_DURATION = Duration.seconds(0.25);
 
     Game(SceneManager sceneManager){
         this.sceneManager=sceneManager;
@@ -55,33 +46,39 @@ public class Game {
     
     
     private void addIcons() {
-    	
-    	// Coin Image
-		FileInputStream coinStream = new FileInputStream ("src\\coin.png");
-        Image coinImage = new Image(coinStream,35,35,true,true);
-        ImageView coinView = new ImageView(coinImage);
-        
-        coinView.setLayoutX(50);
-        coinView.setLayoutY(300);
-        
-        // Magnet Image
-        FileInputStream magnetStream = new FileInputStream ("src\\magnet.png");
-        Image magnetImage = new Image(magnetStream,30,30,true,true);
-        ImageView magnetView = new ImageView(magnetImage);
-        
-        magnetView.setLayoutX(20);
-        magnetView.setLayoutY(33);
-        
-        // Shield Image
-        FileInputStream shieldStream = new FileInputStream ("src\\shield.png");
-        Image shieldImage = new Image(shieldStream,35,35,true,true);
-        ImageView shieldView = new ImageView(shieldImage);
-        
-        shieldView.setLayoutX(400);
-        shieldView.setLayoutY(330);
 
-        
-        root.getChildren().addAll(coinView, magnetView, shieldView);
+        try{
+            // Coin Image
+            FileInputStream coinStream = new FileInputStream ("src\\coin.png");
+            Image coinImage = new Image(coinStream,35,35,true,true);
+            ImageView coinView = new ImageView(coinImage);
+
+            coinView.setLayoutX(50);
+            coinView.setLayoutY(300);
+
+            // Magnet Image
+            FileInputStream magnetStream = new FileInputStream ("src\\magnet.png");
+            Image magnetImage = new Image(magnetStream,30,30,true,true);
+            ImageView magnetView = new ImageView(magnetImage);
+
+            magnetView.setLayoutX(20);
+            magnetView.setLayoutY(33);
+
+            // Shield Image
+            FileInputStream shieldStream = new FileInputStream ("src\\shield.png");
+            Image shieldImage = new Image(shieldStream,35,35,true,true);
+            ImageView shieldView = new ImageView(shieldImage);
+
+            shieldView.setLayoutX(400);
+            shieldView.setLayoutY(330);
+
+
+            root.getChildren().addAll(coinView, magnetView, shieldView);
+        }
+    	catch (FileNotFoundException e){
+
+        }
+
     }
     
     
@@ -135,7 +132,7 @@ public class Game {
 		
 		root.getChildren().add(Snake);
 		
-		moveCircleOnKeyPress(scene,Snake);
+		moveCircleOnKeyPress(Snake);
     }
 
     // Move the snake
