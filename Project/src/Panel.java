@@ -14,21 +14,28 @@ public class Panel {
 	}
 	
 	private Color getColor() {
-		Color[] C = new Color[10];
+		Color[] C = new Color[15];
 		
 		C[0] = Color.AQUA;
-		C[1] = Color.ANTIQUEWHITE;
-		C[2] = Color.BLUEVIOLET;
-		C[3] = Color.DARKORANGE;
-		C[4] = Color.GOLD;
-		C[5] = Color.GREEN;
-		C[6] = Color.HOTPINK;
-		C[7] = Color.YELLOW;
-		C[8] = Color.BEIGE;
-		C[9] = Color.ORCHID;
+		C[1]=Color.YELLOW;
+		C[2]=Color.BLUE;
+		C[3]=Color.DEEPPINK;
+		C[4]=Color.LAWNGREEN;
+		C[5]=Color.LIME;
+		C[5]=Color.ORANGERED;
+		C[6]=Color.TOMATO;
+		C[7]=Color.SPRINGGREEN;
+		C[8]=Color.STEELBLUE;
+		C[9]=Color.ORANGE;
+		C[10]=Color.MEDIUMORCHID;
+		C[11]=Color.INDIANRED;
+		C[12]=Color.DODGERBLUE;
+		C[13]=Color.DARKORANGE;
+		C[14]=Color.CRIMSON;
+
 		
 		Random randC = new Random();
-		int index = randC.nextInt(10); 
+		int index = randC.nextInt(15);
 		
 		return C[index];
 	}

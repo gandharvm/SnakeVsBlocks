@@ -13,7 +13,9 @@ public class Block extends Rectangle {
 		this.length = length;
 		this.width = width;
 		this.mainColor = colorValue;
-		this.strokeColor = Color.DARKRED;
+		this.strokeColor = Color.TRANSPARENT;
+		this.setArcHeight(20);
+		this.setArcWidth(20);
 		
 		setWidth(this.width);
 		setHeight(this.length);

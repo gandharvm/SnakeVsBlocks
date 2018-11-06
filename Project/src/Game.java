@@ -4,11 +4,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+
 
 
 public class Game {
@@ -144,7 +146,7 @@ public class Game {
 
     // Move the snake
     private void moveCircleOnKeyPress(VBox circle) {
-        scene.setOnKeyPressed(event ->  {
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, event ->  {
             switch (event.getCode()) {
               case RIGHT: circle.setLayoutX(circle.getLayoutX() + KEYBOARD_MOVEMENT_DELTA); break;
 	          case LEFT:  circle.setLayoutX(circle.getLayoutX() - KEYBOARD_MOVEMENT_DELTA); break;
