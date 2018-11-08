@@ -14,7 +14,7 @@ public class Panel {
 	}
 	
 	private Color getColor() {
-		Color[] C = new Color[15];
+		Color[] C = new Color[16];
 		
 		C[0] = Color.AQUA;
 		C[1]=Color.YELLOW;
@@ -32,10 +32,11 @@ public class Panel {
 		C[12]=Color.DODGERBLUE;
 		C[13]=Color.DARKORANGE;
 		C[14]=Color.CRIMSON;
+		C[15]=Color.TURQUOISE;
 
 		
 		Random randC = new Random();
-		int index = randC.nextInt(15);
+		int index = randC.nextInt(16);
 		
 		return C[index];
 	}
@@ -56,6 +57,10 @@ public class Panel {
 			
 			Blk.add(stkpane);
 		}
+	}
+
+	public Panel(int xPos,int yPos){
+
 	}
 	
 	public ArrayList<StackPane> getPane(){

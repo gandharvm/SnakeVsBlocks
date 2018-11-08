@@ -17,9 +17,4 @@ public class Generate {
         buttonUI.minHeight(50);
         return buttonUI;
     }
-
-    public static Scene createScene(Group root){
-        Scene scene=new Scene(root);
-        return scene;
-    }
 }

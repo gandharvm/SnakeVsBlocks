@@ -1,11 +1,14 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.util.Duration;
 
 
 public class SceneManager {
 
     private Stage stage;
+    private Timeline animation;
 
     SceneManager(Stage s) {
         this.stage=s;
@@ -23,9 +26,14 @@ public class SceneManager {
 
     public void startGame(){
 
-        Scene scene=new Game(this).start();
+        Game game=new Game(this);
+
+        Scene scene=game.start();
 
         stage.setScene(scene);
+
+        KeyFrame frame = new KeyFrame(Duration.millis(1000), e -> game.step());
+        setGameLoop(frame);
     }
 
     public void Pause(){
@@ -48,6 +56,13 @@ public class SceneManager {
     }
     public void exit(){
         stage.close();
+    }
+
+    private void setGameLoop(KeyFrame frame) {
+        animation = new Timeline();
+        animation.setCycleCount(Timeline.INDEFINITE);
+        animation.getKeyFrames().add(frame);
+        animation.play();
     }
 
 }

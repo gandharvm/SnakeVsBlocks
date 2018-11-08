@@ -6,20 +6,18 @@
   -fx-color: #000;
   -fx-font-weight: 600;
   -fx-margin: 20px;
-  /*-fx-cursor: pointer;*/
   -fx-display: inline-block;
   -fx-background-color: transparent;
   -fx-border-width:3px;
-  /*border:3px solid #00d7c3;*/
   -fx-border-radius: 50px;
-  /*-fx-webkit-transition: all .15s ease-in-out;*/
-  /*-fx-transition: all .15s ease-in-out;*/
   -fx-border-color: #ff0000;
 }
 
 .button:hover {
-  /*box-shadow: 0 0 10px 0 #00d7c3 inset, 0 0 20px 2px #00d7c3;*/
   -fx-effect: dropshadow(three-pass-box, rgba(240,50,50,1), 10, 0, 0, 0);
-  /*border: 3px solid #00d7c3;*/
+}
+
+.button:focused{
+  -fx-effect: dropshadow(three-pass-box, rgba(240,50,50,1), 10, 0, 0, 0);
 }
 
