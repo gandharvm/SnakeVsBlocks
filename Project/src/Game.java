@@ -21,11 +21,12 @@ public class Game {
     private SceneManager sceneManager;
     private Group root;
     private Scene scene;
-    protected long stepCounter=0L;
+    private long stepCounter=0L;
 
     private static final int KEYBOARD_MOVEMENT_DELTA = 15;
 
     Game(SceneManager sceneManager){
+
         this.sceneManager=sceneManager;
 
     }
@@ -49,13 +50,6 @@ public class Game {
         int position=random.nextInt(550)+25;
 
         try{
-        	
-
-            // Wall Initialization
-            Block wall=new Block(200);
-            wall.setLayoutX(350);
-            wall.setLayoutY(200);
-        	
             if(choose==0){
                 // Magnet Image
                 FileInputStream magnetStream = new FileInputStream ("src\\magnet.png");
@@ -110,8 +104,6 @@ public class Game {
     	catch (FileNotFoundException e){
     			// This exception will never occur (Checked exception)
         }
-
-
 
     }
     
@@ -189,10 +181,7 @@ public class Game {
 
     
     // Adds Panel and creates Animation
-
-
     private void addPanel(){
-
 
         Panel P = new Panel(-100);
         ArrayList<StackPane> stkpane = P.getPane();
@@ -209,11 +198,12 @@ public class Game {
 
     }
     
-    // Write comments as to why it is used
+    // spawn walls, coins and powerups after specific intervals
     public void step() {
 
         if (stepCounter % 3 == 0) {
             addPanel();
+            addWall();
             addWall();
         }
 
@@ -252,13 +242,15 @@ public class Game {
         }
 
     }
+
+
     private void addWall(){
         Random random =new Random();
         int position=random.nextInt(550)+25;
 
         int length=random.nextInt(500);
 
-        Block wall=new Block(500);
+        Block wall=new Block(length);
         wall.setLayoutX(position);
         wall.setLayoutY(-100-wall.getLength());
         root.getChildren().add(wall);
