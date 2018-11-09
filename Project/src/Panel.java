@@ -58,10 +58,6 @@ public class Panel {
 			Blk.add(stkpane);
 		}
 	}
-
-	public Panel(int xPos,int yPos){
-
-	}
 	
 	public ArrayList<StackPane> getPane(){
 		return Blk;

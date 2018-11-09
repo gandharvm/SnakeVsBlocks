@@ -35,6 +35,8 @@ public class Block extends Rectangle {
 		setHeight(this.length);
 		setFill(this.mainColor);
 	}
-	
-	
+
+	public int getLength() {
+		return length;
+	}
 }

@@ -14,7 +14,7 @@ import javafx.util.Duration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
+import java.util.Random;
 
 
 public class Game {
@@ -36,55 +36,76 @@ public class Game {
 
         addSnake();
         addTopPanel();
-        addIcons();
 
         return scene;
     }
     
     
-    private void addIcons() {
+    private void addPowerups() {
+
+        Random random =new Random();
+        int choose=random.nextInt(3);
+
+        int position=random.nextInt(550)+25;
 
         try{
-            // Coin Image
-            FileInputStream coinStream = new FileInputStream ("src\\coin.png");
-            Image coinImage = new Image(coinStream,35,35,true,true);
-            ImageView coinView = new ImageView(coinImage);
-
-            coinView.setLayoutX(50);
-            coinView.setLayoutY(300);
-
-            // Magnet Image
-            FileInputStream magnetStream = new FileInputStream ("src\\magnet.png");
-            Image magnetImage = new Image(magnetStream,30,30,true,true);
-            ImageView magnetView = new ImageView(magnetImage);
-
-            magnetView.setLayoutX(20);
-            magnetView.setLayoutY(33);
-
-            // Shield Image
-            FileInputStream shieldStream = new FileInputStream ("src\\shield.png");
-            Image shieldImage = new Image(shieldStream,35,35,true,true);
-            ImageView shieldView = new ImageView(shieldImage);
-
-            shieldView.setLayoutX(400);
-            shieldView.setLayoutY(330);
-
-
-            // DestroyBlocks Image
-            FileInputStream destroyStream = new FileInputStream ("src\\Destroy.png");
-            Image destroyImage = new Image(destroyStream,35,35,true,true);
-            ImageView destroyView = new ImageView(destroyImage);
-
-            destroyView.setLayoutX(400);
-            destroyView.setLayoutY(400);
+        	
 
             // Wall Initialization
             Block wall=new Block(200);
             wall.setLayoutX(350);
             wall.setLayoutY(200);
+        	
+            if(choose==0){
+                // Magnet Image
+                FileInputStream magnetStream = new FileInputStream ("src\\magnet.png");
+                Image magnetImage = new Image(magnetStream,30,30,true,true);
+                ImageView magnetView = new ImageView(magnetImage);
+
+                magnetView.setLayoutX(position);
+                magnetView.setLayoutY(-100);
+                root.getChildren().add(magnetView);
+
+                TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),magnetView);
+                translateTransition.setByY(700);
+                translateTransition.setInterpolator(Interpolator.LINEAR);
+                translateTransition.play();
+            }
+
+            else if (choose==1){
+                // Shield Image
+                FileInputStream shieldStream = new FileInputStream ("src\\shield.png");
+                Image shieldImage = new Image(shieldStream,35,35,true,true);
+                ImageView shieldView = new ImageView(shieldImage);
+
+                shieldView.setLayoutX(position);
+                shieldView.setLayoutY(-100);
+                root.getChildren().add(shieldView);
+
+                TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),shieldView);
+                translateTransition.setByY(700);
+                translateTransition.setInterpolator(Interpolator.LINEAR);
+                translateTransition.play();
+            }
 
 
-            root.getChildren().addAll(coinView, magnetView, shieldView,destroyView,wall);
+            else if(choose==2){
+                // DestroyBlocks Image
+                FileInputStream destroyStream = new FileInputStream ("src\\Destroy.png");
+                Image destroyImage = new Image(destroyStream,35,35,true,true);
+                ImageView destroyView = new ImageView(destroyImage);
+
+                destroyView.setLayoutX(position);
+                destroyView.setLayoutY(-100);
+                root.getChildren().add(destroyView);
+
+
+                TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),destroyView);
+                translateTransition.setByY(700);
+                translateTransition.setInterpolator(Interpolator.LINEAR);
+                translateTransition.play();
+            }
+
         }
     	catch (FileNotFoundException e){
     			// This exception will never occur (Checked exception)
@@ -165,9 +186,13 @@ public class Game {
             }
         });
     }
+
     
     // Adds Panel and creates Animation
-    private void startGame(){
+
+
+    private void addPanel(){
+
 
         Panel P = new Panel(-100);
         ArrayList<StackPane> stkpane = P.getPane();
@@ -188,9 +213,62 @@ public class Game {
     public void step() {
 
         if (stepCounter % 3 == 0) {
-            startGame();
+            addPanel();
+            addWall();
         }
+
+        if (stepCounter % 5 == 0) {
+            addPowerups();
+        }
+
+        addCoins();
 
         stepCounter++;
     }
+
+    private void addCoins(){
+
+        Random random =new Random();
+        int position=random.nextInt(550)+25;
+
+        try{
+
+            // Coin Image
+            FileInputStream coinStream = new FileInputStream ("src\\coin.png");
+            Image coinImage = new Image(coinStream,35,35,true,true);
+            ImageView coinView = new ImageView(coinImage);
+
+            coinView.setLayoutX(position);
+            coinView.setLayoutY(-100);
+            root.getChildren().add(coinView);
+
+            TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),coinView);
+            translateTransition.setByY(700);
+            translateTransition.setInterpolator(Interpolator.LINEAR);
+            translateTransition.play();
+        }
+        catch (FileNotFoundException e){
+            // This exception will never occur(Checked exception)
+        }
+
+    }
+    private void addWall(){
+        Random random =new Random();
+        int position=random.nextInt(550)+25;
+
+        int length=random.nextInt(500);
+
+        Block wall=new Block(500);
+        wall.setLayoutX(position);
+        wall.setLayoutY(-100-wall.getLength());
+        root.getChildren().add(wall);
+
+        TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),wall);
+        translateTransition.setByY(700+wall.getLength());
+        translateTransition.setInterpolator(Interpolator.LINEAR);
+        translateTransition.play();
+
+    }
+
 }
+
