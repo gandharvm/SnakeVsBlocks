@@ -23,7 +23,7 @@ public class Game {
     private Scene scene;
     protected long stepCounter=0L;
 
-    private static final int KEYBOARD_MOVEMENT_DELTA = 5;
+    private static final int KEYBOARD_MOVEMENT_DELTA = 15;
 
     Game(SceneManager sceneManager){
         this.sceneManager=sceneManager;
@@ -78,7 +78,7 @@ public class Game {
             destroyView.setLayoutX(400);
             destroyView.setLayoutY(400);
 
-
+            // Wall Initialization
             Block wall=new Block(200);
             wall.setLayoutX(350);
             wall.setLayoutY(200);
@@ -87,7 +87,7 @@ public class Game {
             root.getChildren().addAll(coinView, magnetView, shieldView,destroyView,wall);
         }
     	catch (FileNotFoundException e){
-    			// This exception will never occur(Checked exception)
+    			// This exception will never occur (Checked exception)
         }
 
 
@@ -156,13 +156,17 @@ public class Game {
     // Move the snake
     private void moveCircleOnKeyPress(VBox snake) {
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event ->  {
-            switch (event.getCode()) {
-              case RIGHT: snake.setLayoutX(snake.getLayoutX() + KEYBOARD_MOVEMENT_DELTA); break;
-	          case LEFT:  snake.setLayoutX(snake.getLayoutX() - KEYBOARD_MOVEMENT_DELTA); break;
+            if(event.getCode().toString() .equals("RIGHT")) {
+            	if(snake.getLayoutX() < 575)
+            		snake.setLayoutX(snake.getLayoutX() + KEYBOARD_MOVEMENT_DELTA);
+            } else if(event.getCode().toString() .equals("LEFT")) {
+            	if(snake.getLayoutX() > 3)
+            		snake.setLayoutX(snake.getLayoutX() - KEYBOARD_MOVEMENT_DELTA); 
             }
         });
     }
-
+    
+    // Adds Panel and creates Animation
     private void startGame(){
 
         Panel P = new Panel(-100);
@@ -170,16 +174,17 @@ public class Game {
 
         root.getChildren().addAll(stkpane);
 
-
+        // Movement of the Panel 
         for (int i=0;i<stkpane.size();i++){
-            TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),stkpane.get(i));
+            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(4),stkpane.get(i));
             translateTransition.setByY(700);
             translateTransition.setInterpolator(Interpolator.LINEAR);
             translateTransition.play();
         }
 
     }
-
+    
+    // Write comments as to why it is used
     public void step() {
 
         if (stepCounter % 3 == 0) {
