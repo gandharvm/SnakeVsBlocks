@@ -1,18 +1,15 @@
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -33,7 +30,6 @@ public class Pause {
         root.setHgap(16);
         root.setVgap(10);
         root.setBackground(Background.EMPTY);
-        //System.out.println(System.getProperty("user.dir"));
 
         scene=new Scene(root,600,600, Color.BLACK);
         addButtons();
@@ -77,12 +73,8 @@ public class Pause {
 //            sceneManager.showMainMenu();
 //        });
 
-        //root.getChildren().addAll(back,Restart,Resume);
-
-        Text x=new Text();
-        x.setText("abc");
-        x.setVisible(false);
-        x.fontProperty().setValue(Font.font(20));
+        Region x=new Region();
+        x.setPrefHeight(20);
         root.add(x,0,1);
 
         back.setMinWidth(vBox.getPrefWidth());
