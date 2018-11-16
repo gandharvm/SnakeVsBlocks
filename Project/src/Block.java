@@ -9,9 +9,9 @@ public class Block extends Rectangle {
 	private Color mainColor;
 	private Color strokeColor;
 	
-	public Block(int length, int width, Color colorValue) {
-		this.length = length;
-		this.width = width;
+	public Block( Color colorValue) {
+		this.length = 75;
+		this.width = 75;
 		this.mainColor = colorValue;
 		this.strokeColor = Color.TRANSPARENT;
 		this.setArcHeight(20);

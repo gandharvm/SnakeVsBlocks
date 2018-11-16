@@ -38,7 +38,7 @@ public class SplashS extends Application {
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep((int)(Math.random()*2000)+3000);
+                    Thread.sleep((int)(Math.random()*500)+1000);
                 } catch (InterruptedException e) {}
                 return null;
             }

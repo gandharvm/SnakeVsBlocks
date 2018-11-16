@@ -16,7 +16,7 @@ public class Panel {
 	private Color getColor() {
 		Color[] C = new Color[16];
 		
-		C[0] = Color.AQUA;
+		C[0]=Color.AQUA;
 		C[1]=Color.YELLOW;
 		C[2]=Color.BLUE;
 		C[3]=Color.DEEPPINK;
@@ -49,8 +49,7 @@ public class Panel {
 			Text value = new Text(Integer.toString(points));
 			
 			Color colorValue = this.getColor();
-			Block temp = new Block(75, 75, colorValue);
-
+			Block temp = new Block(colorValue);
 			StackPane stkpane = new StackPane();
 			stkpane.getChildren().addAll(temp, value);	
 			stkpane.setLayoutX(i*counter); stkpane.setLayoutY(yPos);
@@ -58,6 +57,22 @@ public class Panel {
 			Blk.add(stkpane);
 		}
 	}
+
+	public Panel (int xPos,int yPos,int n) {
+	    int counter=75;
+	    for (int i=0;i<n;i++){
+	        int points=this.getValue();
+	        Text value =new Text(Integer.toString(points));
+
+	        Color colorValue=this.getColor();
+            Block temp = new Block(colorValue);
+            StackPane stkpane = new StackPane();
+            stkpane.getChildren().addAll(temp, value);
+            stkpane.setLayoutX(xPos+i*counter);
+            stkpane.setLayoutY(yPos);
+        }
+
+    }
 	
 	public ArrayList<StackPane> getPane(){
 		return Blk;

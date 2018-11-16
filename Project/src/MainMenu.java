@@ -12,7 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -65,11 +64,15 @@ public class MainMenu {
         start.setOnAction(e ->{
             sceneManager.startGame();
         });
-        Button leader=Generate.createButton("Leaderboard",400.0,250.0,50,20);
+        Button resume=Generate.createButton("Resume Game",400.0,250.0,50,20);
+//        resume.setOnAction(e ->{
+//            sceneManager.startGame();
+//        });
+        Button leader=Generate.createButton("Leaderboard",400.0,300.0,50,20);
         leader.setOnAction(e ->{
             sceneManager.gotoLeaderBoard();
         });
-        Button instructions=Generate.createButton("Instructions",400.0,300.0,50,20);
+        Button instructions=Generate.createButton("Instructions",400.0,350.0,50,20);
         instructions.setOnAction(e ->{
             sceneManager.gotoInstructions();
         });
@@ -86,19 +89,16 @@ public class MainMenu {
 
         start.setMinWidth(vBox.getPrefWidth());
         leader.setMinWidth(vBox.getPrefWidth());
+        resume.setMinWidth(vBox.getPrefWidth());
         instructions.setMinWidth(vBox.getPrefWidth());
         exit.setMinWidth(vBox.getPrefWidth());
 
 
         vBox.setAlignment(Pos.CENTER);
 
-        vBox.getChildren().addAll(start,leader,instructions,exit);
+        vBox.getChildren().addAll(start,resume,leader,instructions,exit);
         root.add(vBox,0,2);
-
-//        root.add(start,0,1);
-//        root.add(leader,0,2);
-//        root.add(instructions,0,3);
-//        root.add(exit,0,4);
+        
 
     }
 }

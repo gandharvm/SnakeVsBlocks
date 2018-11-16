@@ -38,6 +38,8 @@ public class Game {
         addSnake();
         addTopPanel();
 
+       // System.out.println(System.getProperty("user.dir"));
+
         return scene;
     }
     
@@ -203,8 +205,8 @@ public class Game {
 
         if (stepCounter % 3 == 0) {
             addPanel();
-            addWall();
-            addWall();
+            //addWall();
+            //addWall();
         }
 
         if (stepCounter % 5 == 0) {
@@ -255,7 +257,7 @@ public class Game {
         wall.setLayoutY(-100-wall.getLength());
         root.getChildren().add(wall);
 
-        TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),wall);
+        TranslateTransition translateTransition=new TranslateTransition(Duration.seconds((2*wall.getLength()+800)/200),wall);
         translateTransition.setByY(700+wall.getLength());
         translateTransition.setInterpolator(Interpolator.LINEAR);
         translateTransition.play();
