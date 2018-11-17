@@ -98,7 +98,7 @@ public class MainMenu {
 
         vBox.getChildren().addAll(start,resume,leader,instructions,exit);
         root.add(vBox,0,2);
-        
+
 
     }
 }

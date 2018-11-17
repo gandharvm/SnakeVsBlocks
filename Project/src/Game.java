@@ -21,6 +21,9 @@ public class Game {
     private SceneManager sceneManager;
     private Group root;
     private Scene scene;
+    private ArrayList<Panel> panels;
+    private ArrayList<Tokens> tokens;
+    private ArrayList<Wall> walls;
     private long stepCounter=0L;
 
     private static final int KEYBOARD_MOVEMENT_DELTA = 15;
@@ -28,6 +31,9 @@ public class Game {
     Game(SceneManager sceneManager){
 
         this.sceneManager=sceneManager;
+        panels=new ArrayList<>();
+        tokens=new ArrayList<>();
+        walls=new ArrayList<>();
 
     }
 
@@ -35,8 +41,9 @@ public class Game {
         root=new Group();
         scene=new Scene(root,600,600, Color.BLACK);
 
-        addSnake();
         addTopPanel();
+
+        addPlayer();
 
        // System.out.println(System.getProperty("user.dir"));
 
@@ -54,13 +61,10 @@ public class Game {
         try{
             if(choose==0){
                 // Magnet Image
-                FileInputStream magnetStream = new FileInputStream ("src\\magnet.png");
-                Image magnetImage = new Image(magnetStream,30,30,true,true);
-                ImageView magnetView = new ImageView(magnetImage);
-
-                magnetView.setLayoutX(position);
-                magnetView.setLayoutY(-100);
+                Magnet magnet=new Magnet();
+                ImageView magnetView=magnet.addMagnet(position);
                 root.getChildren().add(magnetView);
+                tokens.add(magnet);
 
                 TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),magnetView);
                 translateTransition.setByY(700);
@@ -70,13 +74,10 @@ public class Game {
 
             else if (choose==1){
                 // Shield Image
-                FileInputStream shieldStream = new FileInputStream ("src\\shield.png");
-                Image shieldImage = new Image(shieldStream,35,35,true,true);
-                ImageView shieldView = new ImageView(shieldImage);
-
-                shieldView.setLayoutX(position);
-                shieldView.setLayoutY(-100);
+                Shield shield=new Shield();
+                ImageView shieldView=shield.addShield(position);
                 root.getChildren().add(shieldView);
+                tokens.add(shield);
 
                 TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),shieldView);
                 translateTransition.setByY(700);
@@ -87,14 +88,10 @@ public class Game {
 
             else if(choose==2){
                 // DestroyBlocks Image
-                FileInputStream destroyStream = new FileInputStream ("src\\Destroy.png");
-                Image destroyImage = new Image(destroyStream,35,35,true,true);
-                ImageView destroyView = new ImageView(destroyImage);
-
-                destroyView.setLayoutX(position);
-                destroyView.setLayoutY(-100);
+                DestroyBlocks destroyBlocks=new DestroyBlocks();
+                ImageView destroyView=destroyBlocks.addDestroyBlocks(position);
                 root.getChildren().add(destroyView);
-
+                tokens.add(destroyBlocks);
 
                 TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),destroyView);
                 translateTransition.setByY(700);
@@ -157,15 +154,13 @@ public class Game {
         root.getChildren().addAll(top);
     }
     
-    private void addSnake(){
-    	Snake S = new Snake(10);
-		VBox Snake = S.getSnake();
-		Snake.setLayoutX(300);
-		Snake.setLayoutY(400);
+    private void addPlayer(){
+    	Player player=new Player();
+		VBox snake = player.getSnake();
 		
-		root.getChildren().add(Snake);
+		root.getChildren().add(snake);
 		
-		moveCircleOnKeyPress(Snake);
+		moveCircleOnKeyPress(snake);
     }
 
     // Move the snake
@@ -222,20 +217,18 @@ public class Game {
 
         Random random =new Random();
         int position=random.nextInt(550)+25;
+        int value=random.nextInt(5)+1;
 
         try{
 
             // Coin Image
-            FileInputStream coinStream = new FileInputStream ("src\\coin.png");
-            Image coinImage = new Image(coinStream,35,35,true,true);
-            ImageView coinView = new ImageView(coinImage);
+            Coin coin=new Coin(value);
+            Group coinGroup=coin.addCoin(position);
+            root.getChildren().add(coinGroup);
+            tokens.add(coin);
 
-            coinView.setLayoutX(position);
-            coinView.setLayoutY(-100);
-            root.getChildren().add(coinView);
-
-            TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),coinView);
-            translateTransition.setByY(700);
+            TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),coinGroup);
+            translateTransition.setByY(800);
             translateTransition.setInterpolator(Interpolator.LINEAR);
             translateTransition.play();
         }
@@ -252,7 +245,7 @@ public class Game {
 
         int length=random.nextInt(500);
 
-        Block wall=new Block(length);
+        Wall wall=new Wall(length);
         wall.setLayoutX(position);
         wall.setLayoutY(-100-wall.getLength());
         root.getChildren().add(wall);
