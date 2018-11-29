@@ -1,10 +1,11 @@
 
+import java.io.Serializable;
 import java.util.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-public class Panel {
+public class Panel implements Serializable {
 	
 	private ArrayList<StackPane> Blk = new ArrayList<StackPane>(8);
 	
@@ -58,21 +59,6 @@ public class Panel {
 		}
 	}
 
-	public Panel (int xPos,int yPos,int n) {
-	    int counter=75;
-	    for (int i=0;i<n;i++){
-	        int points=this.getValue();
-	        Text value =new Text(Integer.toString(points));
-
-	        Color colorValue=this.getColor();
-            Block temp = new Block(colorValue);
-            StackPane stkpane = new StackPane();
-            stkpane.getChildren().addAll(temp, value);
-            stkpane.setLayoutX(xPos+i*counter);
-            stkpane.setLayoutY(yPos);
-        }
-
-    }
 	
 	public ArrayList<StackPane> getPane(){
 		return Blk;

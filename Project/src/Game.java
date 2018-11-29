@@ -1,5 +1,3 @@
-import javafx.animation.Interpolator;
-import javafx.animation.TranslateTransition;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,30 +8,35 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
 
-public class Game {
+public class Game implements Serializable {
     private SceneManager sceneManager;
     private Group root;
     private Scene scene;
     private ArrayList<Panel> panels;
     private ArrayList<Tokens> tokens;
     private ArrayList<Wall> walls;
+    private ArrayList<Coin> coins;
+    private Player player;
     private long stepCounter=0L;
+    private int SPEED=3;
 
     private static final int KEYBOARD_MOVEMENT_DELTA = 15;
 
     Game(SceneManager sceneManager){
 
+        player=new Player();
         this.sceneManager=sceneManager;
         panels=new ArrayList<>();
         tokens=new ArrayList<>();
         walls=new ArrayList<>();
+        coins=new ArrayList<>();
 
     }
 
@@ -66,10 +69,6 @@ public class Game {
                 root.getChildren().add(magnetView);
                 tokens.add(magnet);
 
-                TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),magnetView);
-                translateTransition.setByY(700);
-                translateTransition.setInterpolator(Interpolator.LINEAR);
-                translateTransition.play();
             }
 
             else if (choose==1){
@@ -79,10 +78,6 @@ public class Game {
                 root.getChildren().add(shieldView);
                 tokens.add(shield);
 
-                TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),shieldView);
-                translateTransition.setByY(700);
-                translateTransition.setInterpolator(Interpolator.LINEAR);
-                translateTransition.play();
             }
 
 
@@ -93,10 +88,6 @@ public class Game {
                 root.getChildren().add(destroyView);
                 tokens.add(destroyBlocks);
 
-                TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),destroyView);
-                translateTransition.setByY(700);
-                translateTransition.setInterpolator(Interpolator.LINEAR);
-                translateTransition.play();
             }
 
         }
@@ -125,6 +116,7 @@ public class Game {
         }
 
         back.setOnAction(e ->{
+            SceneManager.serialize(this);
             sceneManager.Pause();
         });
 
@@ -155,7 +147,7 @@ public class Game {
     }
     
     private void addPlayer(){
-    	Player player=new Player();
+
 		VBox snake = player.getSnake();
 		
 		root.getChildren().add(snake);
@@ -182,35 +174,49 @@ public class Game {
 
         Panel P = new Panel(-100);
         ArrayList<StackPane> stkpane = P.getPane();
+        panels.add(P);
 
         root.getChildren().addAll(stkpane);
-
-        // Movement of the Panel 
-        for (int i=0;i<stkpane.size();i++){
-            TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(4),stkpane.get(i));
-            translateTransition.setByY(700);
-            translateTransition.setInterpolator(Interpolator.LINEAR);
-            translateTransition.play();
-        }
 
     }
     
     // spawn walls, coins and powerups after specific intervals
     public void step() {
 
-        if (stepCounter % 3 == 0) {
+        if (stepCounter % 200 == 0) {
             addPanel();
-            //addWall();
-            //addWall();
+            addWall();
+            addWall();
+            addCoins();
         }
 
-        if (stepCounter % 5 == 0) {
+        if (stepCounter % 500 == 0) {
             addPowerups();
         }
 
-        addCoins();
+        moveDown();
 
         stepCounter++;
+    }
+
+    private void moveDown(){
+        for (int i=0;i<panels.size();i++){
+            for (int j=0;j<panels.get(i).getPane().size();j++){
+                panels.get(i).getPane().get(j).setLayoutY(panels.get(i).getPane().get(j).getLayoutY()+SPEED);
+            }
+
+        }
+
+        for (int i=0;i<tokens.size();i++){
+            tokens.get(i).getView().setLayoutY(tokens.get(i).getView().getLayoutY()+SPEED);
+        }
+
+        for (int i=0;i<coins.size();i++){
+            coins.get(i).getCoinGroup().setLayoutY(coins.get(i).getCoinGroup().getLayoutY()+SPEED);
+        }
+        for (int i=0;i<walls.size();i++){
+            walls.get(i).setLayoutY(walls.get(i).getLayoutY()+SPEED);
+        }
     }
 
     private void addCoins(){
@@ -225,12 +231,8 @@ public class Game {
             Coin coin=new Coin(value);
             Group coinGroup=coin.addCoin(position);
             root.getChildren().add(coinGroup);
-            tokens.add(coin);
+            coins.add(coin);
 
-            TranslateTransition translateTransition=new TranslateTransition(Duration.seconds(4),coinGroup);
-            translateTransition.setByY(800);
-            translateTransition.setInterpolator(Interpolator.LINEAR);
-            translateTransition.play();
         }
         catch (FileNotFoundException e){
             // This exception will never occur(Checked exception)
@@ -249,11 +251,8 @@ public class Game {
         wall.setLayoutX(position);
         wall.setLayoutY(-100-wall.getLength());
         root.getChildren().add(wall);
+        walls.add(wall);
 
-        TranslateTransition translateTransition=new TranslateTransition(Duration.seconds((2*wall.getLength()+800)/200),wall);
-        translateTransition.setByY(700+wall.getLength());
-        translateTransition.setInterpolator(Interpolator.LINEAR);
-        translateTransition.play();
 
     }
 

@@ -2,7 +2,9 @@
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
-public class Block extends Rectangle {
+import java.io.Serializable;
+
+public class Block extends Rectangle implements Serializable {
 		
 	private int length;
 	private int width;

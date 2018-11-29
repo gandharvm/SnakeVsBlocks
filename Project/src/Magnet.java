@@ -8,6 +8,11 @@ public class Magnet extends Tokens {
     private final int TIME=5;
     private ImageView magnetView;
 
+    @Override
+    public ImageView getView() {
+        return magnetView;
+    }
+
     public Magnet() {
 
     }

@@ -8,6 +8,11 @@ import java.io.FileNotFoundException;
 public class DestroyBlocks extends Tokens {
     private ImageView destroyView;
 
+    @Override
+    public ImageView getView() {
+        return destroyView;
+    }
+
     public DestroyBlocks() {
 
     }

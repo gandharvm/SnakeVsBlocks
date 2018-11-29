@@ -1,14 +1,18 @@
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.*;
 
-public class SceneManager {
+
+public class SceneManager implements Serializable{
 
     private Stage stage;
     private Timeline animation;
+    private Game game;
 
     SceneManager(Stage s) {
         this.stage=s;
@@ -26,14 +30,15 @@ public class SceneManager {
 
     public void startGame(){
 
-        Game game=new Game(this);
+        game=desreialize();
+        if (game==null){
+            game=new Game(this);
+        }
 
         Scene scene=game.start();
 
         stage.setScene(scene);
-
-        KeyFrame frame = new KeyFrame(Duration.millis(1000), e -> game.step());
-        setGameLoop(frame);
+        setGameLoop();
     }
 
     public void Pause(){
@@ -58,11 +63,40 @@ public class SceneManager {
         stage.close();
     }
 
-    private void setGameLoop(KeyFrame frame) {
-        animation = new Timeline();
-        animation.setCycleCount(Timeline.INDEFINITE);
-        animation.getKeyFrames().add(frame);
-        animation.play();
+    private void setGameLoop() {
+        AnimationTimer timer=new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                game.step();
+            }
+        };
+        timer.start();
+    }
+
+    public static void serialize(Game game){
+        ObjectOutputStream out =null;
+        try{
+            out=new ObjectOutputStream(new FileOutputStream("out.txt"));
+            out.writeObject(game);
+            out.close();
+        }catch ( IOException e){
+
+        }
+
+    }
+
+    public static Game desreialize(){
+        ObjectInputStream in =null;
+        Game game=null;
+        try{
+            in=new ObjectInputStream(new FileInputStream("out.txt"));
+            game=(Game) in.readObject();
+            in.close();
+        }
+        catch (ClassNotFoundException | IOException e){
+
+        }
+        return game;
     }
 
 }

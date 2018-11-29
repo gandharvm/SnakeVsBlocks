@@ -13,6 +13,16 @@ public class Coin extends Tokens {
     private ImageView coinView;
     private Group coinGroup;
 
+
+    @Override
+    public ImageView getView() {
+        return null;
+    }
+
+    public Group getCoinGroup() {
+        return coinGroup;
+    }
+
     public Coin(int value) {
         this.value = value;
     }

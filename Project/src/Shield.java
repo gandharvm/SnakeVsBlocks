@@ -8,6 +8,11 @@ public class Shield extends Tokens {
     private final int TIME=5;
     private ImageView shieldView;
 
+    @Override
+    public ImageView getView(){
+        return shieldView;
+    }
+
     public Shield() {
 
     }
