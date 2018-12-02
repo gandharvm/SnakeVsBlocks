@@ -1,11 +1,13 @@
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class Wall extends Rectangle {
+import java.io.Serializable;
+
+public class Wall extends Rectangle implements Serializable {
     private int length;
     private int width;
     private Color mainColor;
-    private Color strokeColor;
+    private double xPos,yPos;
 
     public Wall(int length){
         this.length=length;
@@ -21,5 +23,14 @@ public class Wall extends Rectangle {
 
     public int getLength() {
         return length;
+    }
+
+    public double getyPos() {
+        return yPos;
+    }
+
+    public void updatePosition(){
+        this.xPos=this.getLayoutX();
+        this.yPos=this.getLayoutY();
     }
 }

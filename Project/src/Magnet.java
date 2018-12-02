@@ -3,15 +3,11 @@ import javafx.scene.image.ImageView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 
-public class Magnet extends Tokens {
+public class Magnet extends Tokens implements Serializable {
     private final int TIME=5;
-    private ImageView magnetView;
 
-    @Override
-    public ImageView getView() {
-        return magnetView;
-    }
 
     public Magnet() {
 
@@ -20,11 +16,11 @@ public class Magnet extends Tokens {
     public ImageView addMagnet(int xPos) throws FileNotFoundException{
         FileInputStream magnetStream = new FileInputStream ("src\\magnet.png");
         Image magnetImage = new Image(magnetStream,30,30,true,true);
-        magnetView = new ImageView(magnetImage);
+        imageView = new ImageView(magnetImage);
 
-        magnetView.setLayoutX(xPos);
-        magnetView.setLayoutY(-100);
-        return magnetView;
+        imageView.setLayoutX(xPos);
+        imageView.setLayoutY(-100);
+        return imageView;
     }
 
     @Override

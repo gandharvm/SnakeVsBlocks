@@ -1,17 +1,23 @@
-import javafx.scene.layout.VBox;
-
-import java.io.Serializable;
-
-public class Player implements Serializable {
+public class Player {
     private int score;
     private Snake snake;
 
     public Player() {
         this.score = 0;
-        this.snake=new Snake();
+        this.snake=new Snake(5);
     }
 
-    public VBox getSnake(){
-        return snake.getSnake();
+    public int getScore() {
+        return score;
     }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public Snake getSnake(){
+        return snake;
+    }
+
+
 }

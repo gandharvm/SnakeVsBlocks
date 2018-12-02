@@ -10,8 +10,9 @@ public class Block extends Rectangle implements Serializable {
 	private int width;
 	private Color mainColor;
 	private Color strokeColor;
-	
-	public Block( Color colorValue) {
+
+
+	public Block(Color colorValue) {
 		this.length = 75;
 		this.width = 75;
 		this.mainColor = colorValue;
@@ -26,8 +27,4 @@ public class Block extends Rectangle implements Serializable {
 
 	}
 
-
-	public int getLength() {
-		return length;
-	}
 }

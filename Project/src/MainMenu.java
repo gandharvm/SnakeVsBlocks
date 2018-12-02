@@ -38,7 +38,6 @@ public class MainMenu {
     }
 
     public void addButtons(){
-
         try {
             FileInputStream inputStream=new FileInputStream ("src\\Logom8.png");
             Image image=new Image(inputStream,400,50,true,true);
@@ -65,9 +64,9 @@ public class MainMenu {
             sceneManager.startGame();
         });
         Button resume=Generate.createButton("Resume Game",400.0,250.0,50,20);
-//        resume.setOnAction(e ->{
-//            sceneManager.startGame();
-//        });
+        resume.setOnAction(e ->{
+            sceneManager.restartGame();
+        });
         Button leader=Generate.createButton("Leaderboard",400.0,300.0,50,20);
         leader.setOnAction(e ->{
             sceneManager.gotoLeaderBoard();

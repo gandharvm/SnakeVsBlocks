@@ -69,9 +69,9 @@ public class Pause {
         });
 
         Button Resume=Generate.createButton("Resume",300.0,600.0,50,20);
-//        Resume.setOnAction(e ->{
-//            sceneManager.showMainMenu();
-//        });
+        Resume.setOnAction(e ->{
+            sceneManager.restartGame();
+        });
 
         Region x=new Region();
         x.setPrefHeight(20);

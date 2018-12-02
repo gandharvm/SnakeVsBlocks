@@ -1,18 +1,15 @@
 import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.*;
 
 
-public class SceneManager implements Serializable{
+public class SceneManager{
 
     private Stage stage;
-    private Timeline animation;
     private Game game;
+    private Game prevGame;
 
     SceneManager(Stage s) {
         this.stage=s;
@@ -30,15 +27,13 @@ public class SceneManager implements Serializable{
 
     public void startGame(){
 
-        game=desreialize();
-        if (game==null){
-            game=new Game(this);
-        }
+        game=new Game(3,0,7,stage);
+        AnimationTimer timer=setGameLoop(game);
 
-        Scene scene=game.start();
+        Scene scene=game.start(this,timer);
 
         stage.setScene(scene);
-        setGameLoop();
+
     }
 
     public void Pause(){
@@ -63,40 +58,47 @@ public class SceneManager implements Serializable{
         stage.close();
     }
 
-    private void setGameLoop() {
+    private AnimationTimer setGameLoop(Game g) {
         AnimationTimer timer=new AnimationTimer() {
             @Override
             public void handle(long now) {
-                game.step();
+                g.step();
             }
         };
         timer.start();
+        return timer;
     }
 
-    public static void serialize(Game game){
-        ObjectOutputStream out =null;
-        try{
-            out=new ObjectOutputStream(new FileOutputStream("out.txt"));
-            out.writeObject(game);
-            out.close();
-        }catch ( IOException e){
-
+    public void restartGame(){
+        Data data=null;
+        try {
+            data=Data.deserialize();
         }
+        catch (IOException e){
+            prevGame=new Game(3,0,7,stage);
+        }
+        if (data!=null){
+            if (data.getLength()>=0){
+                prevGame =new Game(data.getSPEED(),data.getScore(),data.getLength(),stage);
+            }
+            else {
+                prevGame=new Game(3,0,7,stage);
+            }
+        }
+        else {
+            prevGame=new Game(3,0,7,stage);
+        }
+
+        //Scene scene=prevGame.start();
+        Scene scene=prevGame.getScene();
+        AnimationTimer timer=setGameLoop(prevGame);
+        prevGame.start(this,timer);
+        stage.setScene(scene);
 
     }
 
-    public static Game desreialize(){
-        ObjectInputStream in =null;
-        Game game=null;
-        try{
-            in=new ObjectInputStream(new FileInputStream("out.txt"));
-            game=(Game) in.readObject();
-            in.close();
-        }
-        catch (ClassNotFoundException | IOException e){
-
-        }
-        return game;
+    public void gameOver(int score){
+        Scene scene=new GameOver(this).start(score);
+        stage.setScene(scene);
     }
-
 }
