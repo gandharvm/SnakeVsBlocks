@@ -1,0 +1,19 @@
+
+.button {
+  -fx-width: 170px;
+  -fx-padding: 20px;
+  -fx-text-align: center;
+  -fx-color: #000;
+  -fx-font-weight: 600;
+  -fx-margin: 20px;
+  -fx-display: inline-block;
+  -fx-background-color: transparent;
+  -fx-border-width:3px;
+  -fx-border-radius: 50px;
+  -fx-border-color: #ff7777;
+}
+
+.button:hover {
+  -fx-effect: dropshadow(three-pass-box, rgba(255,100,100,1), 10, 0, 0, 0);
+}
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="415.0" layoutX="-6.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" width="612.0" />
+      <ImageView fx:id="loadingCircle" fitHeight="102.0" fitWidth="157.0" layoutX="222.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@loading.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="535.0" layoutY="369.0" text="Loading..." textFill="WHITE" />
+   <ImageView fitHeight="62.0" fitWidth="416.0" layoutX="93.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Logom8.png" />
+      </image>
+   </ImageView>
+
+
+</Pane>
